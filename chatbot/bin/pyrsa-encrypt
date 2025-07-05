@@ -1,4 +1,4 @@
-#!/Users/himanshu/Downloads/DataScience/talentscout-hiring-assistant/chatbot/bin/python3
+#!/Users/himanshu/Downloads/DataScience/talentscout-hiring-assistant/chatbot/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys
