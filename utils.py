@@ -3,6 +3,8 @@
 import os
 import google.generativeai as genai
 from textblob import TextBlob
+from dotenv import load_dotenv
+load_dotenv()
 
 # Load API key securely
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
