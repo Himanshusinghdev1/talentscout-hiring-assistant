@@ -1,25 +1,23 @@
-import openai
+# utils.py (Gemini version)
+
 import os
+import google.generativeai as genai
 from textblob import TextBlob
 
-# Load API key from environment variables
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Load API key securely
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-def ask_openai(prompt, temperature=0.7, model="gpt-3.5-turbo"):
+def ask_gemini(prompt, model_name="gemini-pro"):
     try:
-        response = client.chat.completions.create(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=temperature
-        )
-        return response.choices[0].message.content.strip()
+        model = genai.GenerativeModel(model_name)
+        response = model.generate_content(prompt)
+        return response.text.strip()
     except Exception as e:
-        return f"⚠️ Error from OpenAI API: {str(e)}"
+        return f"⚠️ Gemini API Error: {str(e)}"
 
 def analyze_sentiment(text):
     blob = TextBlob(text)
     polarity = blob.sentiment.polarity
-
     if polarity > 0.3:
         return "😊 Positive"
     elif polarity < -0.3:

@@ -2,7 +2,7 @@
 
 import streamlit as st
 from prompts import get_greeting_prompt_multilingual, get_question_prompt
-from utils import ask_openai, analyze_sentiment
+from utils import ask_gemini, analyze_sentiment
 from data_handler import save_candidate
 
 # --- Streamlit Page Setup ---
@@ -40,7 +40,7 @@ if not st.session_state.language_selected:
 else:
     # --- Initial Greeting (once) ---
     if not st.session_state.chatbot_initialized:
-        greeting = ask_openai(get_greeting_prompt_multilingual(st.session_state.language))
+        greeting = ask_gemini(get_greeting_prompt_multilingual(st.session_state.language))
         st.session_state.conversation.append(("Assistant", greeting))
         st.session_state.chatbot_initialized = True
 
@@ -78,7 +78,7 @@ else:
                 save_candidate(st.session_state.info)
                 tech_stack = st.session_state.info.get("Tech Stack", "")
                 tech_prompt = get_question_prompt(tech_stack)
-                tech_questions = ask_openai(tech_prompt)
+                tech_questions = ask_gemini(tech_prompt)
 
                 st.session_state.conversation.append(("Assistant", "Thank you for sharing your details! Based on your tech stack, here are some questions:"))
                 st.session_state.conversation.append(("Assistant", tech_questions))
