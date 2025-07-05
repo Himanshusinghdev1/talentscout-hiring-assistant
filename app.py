@@ -5,7 +5,7 @@ from prompts import get_greeting_prompt_multilingual, get_question_prompt
 from utils import ask_gemini, analyze_sentiment
 from data_handler import save_candidate
 
-# --- Streamlit Page Setup ---
+# --- Streamlit Page Setup --
 st.set_page_config(page_title="TalentScout AI Assistant", layout="centered")
 st.title("🤖 TalentScout Hiring Assistant")
 
