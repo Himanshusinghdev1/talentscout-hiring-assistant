@@ -2,7 +2,7 @@ import openai
 import os
 from textblob import TextBlob
 
-# Load API key from environment variable
+# Load API key from environment variables
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def ask_openai(prompt, temperature=0.7, model="gpt-3.5-turbo"):
